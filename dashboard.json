@@ -1,6 +1,5 @@
 {
-  "__inputs": [
-  ],
+  "__inputs": [],
   "__requires": [
     {
       "type": "grafana",
@@ -3114,7 +3113,6 @@
               "yaxis": 2
             }
           ],
-          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -3225,7 +3223,6 @@
               "stack": "A"
             }
           ],
-          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -3281,6 +3278,99 @@
               "show": true
             }
           ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "$datasource",
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {},
+          "id": 49,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false,
+            "rightSide": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "submission latency",
+              "yaxis": 2
+            }
+          ],
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "E",
+              "target": "alias(sumSeries(metrictank.stats.$environment.$instance.cache.accounting.submission.queue-len.max.gauge32), 'queue length')",
+              "hide": false,
+              "refCount": 0
+            },
+            {
+              "refId": "F",
+              "target": "alias(sumSeries(metrictank.stats.$environment.$instance.cache.accounting.submission.duration.latency.max.gauge32), 'submission latency')",
+              "hide": false,
+              "refCount": 0
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "accounting",
+          "tooltip": {
+            "msResolution": false,
+            "shared": true,
+            "sort": 0,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [],
+            "buckets": null
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          },
+          "dashes": false,
+          "dashLength": 10,
+          "spaceLength": 10
         }
       ],
       "repeat": null,
