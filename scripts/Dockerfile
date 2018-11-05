@@ -1,4 +1,12 @@
-FROM alpine
+FROM golang:1.10-alpine as build
+RUN apk --no-cache add git
+RUN mkdir -p /go/src/github.com/grafana/
+WORKDIR /go/src/github.com/grafana/
+RUN git clone -b DZ-GC-exp https://github.com/deniszh/metrictank.git
+WORKDIR /go/src/github.com/grafana/metrictank
+RUN go get ./...
+
+FROM alpine as production
 MAINTAINER Dieter Plaetinck dieter@grafana.com
 
 RUN apk add -U tzdata
@@ -13,7 +21,7 @@ COPY config/schema-idx-cassandra.toml /etc/metrictank/schema-idx-cassandra.toml
 COPY config/schema-store-scylladb.toml /usr/share/metrictank/examples/schema-store-scylladb.toml
 COPY config/schema-idx-scylladb.toml /usr/share/metrictank/examples/schema-idx-scylladb.toml
 
-COPY build/* /usr/bin/
+COPY --from=builder /go/bin/* /usr/bin/
 
 COPY util/wait_for_endpoint.sh /usr/bin/wait_for_endpoint.sh
 
