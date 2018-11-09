@@ -436,6 +436,7 @@ func main() {
 	}
 
 	// resetting GOGC back to default
+	log.Info("Reverting GOGC back to 100")
 	debug.SetGCPercent(100)
 
 	/***********************************
