@@ -376,7 +376,7 @@ func (k *KafkaMdm) MaintainPriority() {
 			case <-ticker.C:
 				cluster.Manager.SetPriority(k.lagMonitor.Metric())
 				lag := k.lagMonitor.Metric()
-				if (lag > 0) && (lag <= 10) {
+				if lag => 0 && lag <= 10 {
 					// resetting GOGC back to default
 					log.Infof("kafkamdm: lag is %s - good, setting GOGC to 100", lag)
 					debug.SetGCPercent(100)
