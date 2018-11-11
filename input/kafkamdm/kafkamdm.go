@@ -382,8 +382,8 @@ func (k *KafkaMdm) MaintainPriority() {
 					debug.SetGCPercent(100)
 				} else {
 					// we're probably starting
-					log.Infof("kafkamdm: lag is %d - big, setting GOGC to 50", lag)
-					debug.SetGCPercent(50)
+					log.Infof("kafkamdm: lag is %d - big, setting GOGC to 25", lag)
+					debug.SetGCPercent(25)
 				}
 			}
 		}
