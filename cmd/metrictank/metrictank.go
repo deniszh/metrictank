@@ -8,7 +8,6 @@ import (
 	"os"
 	"os/signal"
 	"runtime"
-	"runtime/debug"
 	"strconv"
 	"strings"
 	"sync"
@@ -434,10 +433,6 @@ func main() {
 	} else {
 		time.AfterFunc(warmupPeriod, cluster.Manager.SetReady)
 	}
-
-	// resetting GOGC back to default
-	log.Info("Reverting GOGC back to 100")
-	debug.SetGCPercent(100)
 
 	/***********************************
 		Wait for Shutdown
