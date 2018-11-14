@@ -379,16 +379,16 @@ func (k *KafkaMdm) MaintainPriority() {
 				return
 			case <-ticker.C:
 				cluster.Manager.SetPriority(k.lagMonitor.Metric())
-				if kafkamdm.normalGCPercent != 100 && kafkamdm.startupGCPercent != 100 {
+				if normalGCPercent != 100 && startupGCPercent != 100 {
 					lag := k.lagMonitor.Metric()
 					if lag >= 0 && lag <= cluster.MaxPrio {
 						// resetting GOGC back to default
-						log.Infof("kafkamdm: lag is %d <= %d - good, setting GOGC to %d", lag, cluster.MaxPrio, kafkamdm.normalGCPercent)
-						debug.SetGCPercent(kafkamdm.normalGCPercent)
+						log.Infof("kafkamdm: lag is %d <= %d - good, setting GOGC to %d", lag, cluster.MaxPrio, normalGCPercent)
+						debug.SetGCPercent(normalGCPercent)
 					} else {
 						// we're probably starting
-						log.Infof("kafkamdm: lag is %d > %d, too big, setting GOGC to %d", lag, cluster.MaxPrio, kafkamdm.startupGCPercent)
-						debug.SetGCPercent(kafkamdm.startupGCPercent)
+						log.Infof("kafkamdm: lag is %d > %d, too big, setting GOGC to %d", lag, cluster.MaxPrio, startupGCPercent)
+						debug.SetGCPercent(startupGCPercent)
 					}
 				}
 			}
