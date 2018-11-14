@@ -17,7 +17,7 @@ var (
 	peersStr           string
 	mode               string
 	maxPrio            int
-	Zhopa              int
+	MaxPrio            int
 	httpTimeout        time.Duration
 	minAvailableShards int
 
