@@ -1,9 +1,10 @@
 package cluster
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 	"time"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestPeersForQuerySingle(t *testing.T) {
