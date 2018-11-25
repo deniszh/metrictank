@@ -381,7 +381,7 @@ func (k *KafkaMdm) MaintainPriority() {
 				cluster.Manager.SetPriority(k.lagMonitor.Metric())
 				log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
 				log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
-				if normalGCPercent != 100 && startupGCPercent != 100 {
+				if normalGCPercent != 100 || startupGCPercent != 100 {
 					lag := k.lagMonitor.Metric()
 					if lag >= 0 && lag <= cluster.MaxPrio {
 						// resetting GOGC back to default
