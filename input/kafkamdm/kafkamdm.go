@@ -88,7 +88,8 @@ func ConfigSetup() {
 	inKafkaMdm.IntVar(&netMaxOpenRequests, "net-max-open-requests", 100, "How many outstanding requests a connection is allowed to have before sending on it blocks")
 	inKafkaMdm.IntVar(&startupGCPercent, "startup-gc-percent", 100, "GOGC value during node startup (lag > maxPrio)")
 	globalconf.Register("kafka-mdm-in", inKafkaMdm)
-	fmt.Println(inKafkaMdm)
+	fmt.Println(startupGCPercent)
+	fmt.Println(normalGCPercent)
 }
 
 func ConfigProcess(instance string) {

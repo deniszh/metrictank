@@ -103,6 +103,7 @@ func main() {
 		Filename:  path,
 		EnvPrefix: "MT_",
 	})
+	fmt.Println(config)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "FATAL: configuration file error: %s", err)
 		os.Exit(1)
@@ -139,6 +140,8 @@ func main() {
 	bigtableStore.ConfigSetup()
 
 	config.ParseAll()
+
+	fmt.Println(config)
 
 	/***********************************
 		Set up Logger
