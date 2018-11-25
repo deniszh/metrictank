@@ -88,6 +88,7 @@ func ConfigSetup() {
 	inKafkaMdm.IntVar(&startupGCPercent, "startup-gc-percent", 100, "GOGC value during node startup (lag > maxPrio)")
 	inKafkaMdm.IntVar(&normalGCPercent, "normal-gc-percent", 100, "GOGC value during normal run (lag <= maxPrio)")
 	globalconf.Register("kafka-mdm-in", inKafkaMdm)
+	log.Infof("kafkamdm: netMaxOpenRequests: %d", netMaxOpenRequests)
 	log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
 	log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
 }
