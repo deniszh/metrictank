@@ -88,19 +88,12 @@ func ConfigSetup() {
 	inKafkaMdm.IntVar(&startupGCPercent, "startup-gc-percent", 100, "GOGC value during node startup (lag > maxPrio)")
 	inKafkaMdm.IntVar(&normalGCPercent, "normal-gc-percent", 100, "GOGC value during normal run (lag <= maxPrio)")
 	globalconf.Register("kafka-mdm-in", inKafkaMdm)
-	log.Infof("kafkamdm: netMaxOpenRequests: %d", netMaxOpenRequests)
-	log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
-	log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
 }
 
 func ConfigProcess(instance string) {
 	if !Enabled {
 		return
 	}
-
-	log.Infof("kafkamdm: netMaxOpenRequests: %d", netMaxOpenRequests)
-	log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
-	log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
 
 	kafkaVersion, err := sarama.ParseKafkaVersion(kafkaVersionStr)
 	if err != nil {
@@ -386,6 +379,8 @@ func (k *KafkaMdm) MaintainPriority() {
 				return
 			case <-ticker.C:
 				cluster.Manager.SetPriority(k.lagMonitor.Metric())
+				log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
+				log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
 				if normalGCPercent != 100 && startupGCPercent != 100 {
 					lag := k.lagMonitor.Metric()
 					if lag >= 0 && lag <= cluster.MaxPrio {
