@@ -2,7 +2,7 @@ FROM golang:1.11-alpine as build
 RUN apk --no-cache add git
 RUN mkdir -p /go/src/github.com/grafana/
 WORKDIR /go/src/github.com/grafana/
-RUN git clone -b DZ-GC-control https://github.com/deniszh/metrictank.git
+RUN git clone -b DZ-GC-api https://github.com/deniszh/metrictank.git
 WORKDIR /go/src/github.com/grafana/metrictank
 RUN go get ./...
 
