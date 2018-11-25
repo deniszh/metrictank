@@ -82,14 +82,14 @@ func ConfigSetup() {
 	inKafkaMdm.IntVar(&channelBufferSize, "channel-buffer-size", 1000, "The number of metrics to buffer in internal and external channels")
 	inKafkaMdm.IntVar(&consumerFetchMin, "consumer-fetch-min", 1, "The minimum number of message bytes to fetch in a request")
 	inKafkaMdm.IntVar(&consumerFetchDefault, "consumer-fetch-default", 32768, "The default number of message bytes to fetch in a request")
-	inKafkaMdm.IntVar(&normalGCPercent, "normal-gc-percent", 100, "GOGC value during normal run (lag <= maxPrio)")
 	inKafkaMdm.DurationVar(&consumerMaxWaitTime, "consumer-max-wait-time", time.Second, "The maximum amount of time the broker will wait for Consumer.Fetch.Min bytes to become available before it returns fewer than that anyway")
 	inKafkaMdm.DurationVar(&consumerMaxProcessingTime, "consumer-max-processing-time", time.Second, "The maximum amount of time the consumer expects a message takes to process")
 	inKafkaMdm.IntVar(&netMaxOpenRequests, "net-max-open-requests", 100, "How many outstanding requests a connection is allowed to have before sending on it blocks")
 	inKafkaMdm.IntVar(&startupGCPercent, "startup-gc-percent", 100, "GOGC value during node startup (lag > maxPrio)")
+	inKafkaMdm.IntVar(&normalGCPercent, "normal-gc-percent", 100, "GOGC value during normal run (lag <= maxPrio)")
 	globalconf.Register("kafka-mdm-in", inKafkaMdm)
-	fmt.Println(startupGCPercent)
-	fmt.Println(normalGCPercent)
+	log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
+	log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
 }
 
 func ConfigProcess(instance string) {
