@@ -98,6 +98,10 @@ func ConfigProcess(instance string) {
 		return
 	}
 
+	log.Infof("kafkamdm: netMaxOpenRequests: %d", netMaxOpenRequests)
+	log.Infof("kafkamdm: startupGCPercent: %d", startupGCPercent)
+	log.Infof("kafkamdm: normalGCPercent: %d", normalGCPercent)
+
 	kafkaVersion, err := sarama.ParseKafkaVersion(kafkaVersionStr)
 	if err != nil {
 		log.Fatalf("kafkamdm: invalid kafka-version. %s", err)
