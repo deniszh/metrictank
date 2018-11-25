@@ -192,6 +192,10 @@ func main() {
 	bigtable.ConfigProcess()
 	bigtableStore.ConfigProcess(mdata.MaxChunkSpan())
 
+	log.Infof("metrictank: netMaxOpenRequests: %d", netMaxOpenRequests)
+	log.Infof("metricktank: startupGCPercent: %d", startupGCPercent)
+	log.Infof("metrictank: normalGCPercent: %d", normalGCPercent)
+
 	if !inCarbon.Enabled && !inKafkaMdm.Enabled && !inPrometheus.Enabled {
 		log.Fatal("you should enable at least 1 input plugin")
 	}
