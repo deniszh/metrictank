@@ -8,7 +8,7 @@ import (
 	"github.com/grafana/metrictank/api/middleware"
 	"github.com/grafana/metrictank/api/models"
 	"github.com/grafana/metrictank/api/response"
-	"github.com/grafana/metrictank/kafkamdm"
+	"github.com/grafana/metrictank/input/kafkamdm"
 )
 
 func (s *Server) getStartupGCPercent(ctx *middleware.Context) {
