@@ -1,10 +1,6 @@
 package api
 
 import (
-	"fmt"
-	"net/http"
-	"strconv"
-
 	"github.com/grafana/metrictank/api/middleware"
 	"github.com/grafana/metrictank/api/models"
 	"github.com/grafana/metrictank/api/response"
@@ -20,27 +16,11 @@ func (s *Server) getNormalGCPercent(ctx *middleware.Context) {
 }
 
 func (s *Server) setStartupGCPercent(ctx *middleware.Context, percent models.StartupGCPercent) {
-	value, err := strconv.Atoi(percent.Value)
-	if err != nil {
-		response.Write(ctx, response.NewError(http.StatusBadRequest, fmt.Sprintf(
-			"could not parse status to Int. %s",
-			err.Error())),
-		)
-		return
-	}
-	kafkamdm.StartupGCPercent = value
+	kafkamdm.StartupGCPercent = percent.Value
 	ctx.PlainText(200, []byte("OK"))
 }
 
 func (s *Server) setNormalGCPercent(ctx *middleware.Context, percent models.NormalGCPercent) {
-	value, err := strconv.Atoi(percent.Value)
-	if err != nil {
-		response.Write(ctx, response.NewError(http.StatusBadRequest, fmt.Sprintf(
-			"could not parse status to Int. %s",
-			err.Error())),
-		)
-		return
-	}
-	kafkamdm.NormalGCPercent = value
+	kafkamdm.NormalGCPercent = percent.Value
 	ctx.PlainText(200, []byte("OK"))
 }
