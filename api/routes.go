@@ -81,6 +81,6 @@ func (s *Server) RegisterRoutes() {
 	// GC gontrol
 	r.Get("/gc/startup", noTrace, s.getStartupGCPercent)
 	r.Get("/gc/normal", noTrace, s.getNormalGCPercent)
-	r.Post("/gc/startup", bind(models.StartupGCPercent{}), s.setGCStartupPercent)
-	r.Post("/gc/normal", bind(models.NormalGCPercent{}), s.setGCNormalPercent)
+	r.Post("/gc/startup", bind(models.StartupGCPercent{}), s.setStartupGCPercent)
+	r.Post("/gc/normal", bind(models.NormalGCPercent{}), s.setNormalGCPercent)
 }
