@@ -33,7 +33,7 @@ func (s *Server) setStartupGCPercent(ctx *middleware.Context, percent models.Sta
 }
 
 func (s *Server) setNormalGCPercent(ctx *middleware.Context, percent models.NormalGCPercent) {
-	value, err := strconv.ParseInt(percent.value, 10, 0)
+	value, err := strconv.ParseInt(percent.Value, 10, 0)
 	if err != nil {
 		response.Write(ctx, response.NewError(http.StatusBadRequest, fmt.Sprintf(
 			"could not parse status to Int. %s",
