@@ -90,7 +90,7 @@ func ConfigSetup() {
 	if os.Getenv("GOGC") == "" {
 		goGC = 100
 	} else {
-		goGC, err = strconv.Atoi(os.Getenv("GOGC"))
+		goGC, err := strconv.Atoi(os.Getenv("GOGC"))
 		if err != nil {
 			goGC = 100
 		}
