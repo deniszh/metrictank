@@ -88,7 +88,7 @@ func ConfigSetup() {
 	inKafkaMdm.DurationVar(&consumerMaxProcessingTime, "consumer-max-processing-time", time.Second, "The maximum amount of time the consumer expects a message takes to process")
 	inKafkaMdm.IntVar(&netMaxOpenRequests, "net-max-open-requests", 100, "How many outstanding requests a connection is allowed to have before sending on it blocks")
 	if os.Getenv("GOGC") != "" {
-		var err
+		var err error
 		goGC, err = strconv.Atoi(os.Getenv("GOGC"))
 		if err != nil {
 			goGC = 100
