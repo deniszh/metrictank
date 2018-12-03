@@ -157,7 +157,7 @@ For more information on profiling see the excellent [Profiling Go Programs](http
 
 ## GC control
 
-You can use `startup-gc-percent` and `normal-gc-percent` parameters in `[kafka-mdm-in]` section for GOGC control. Startup parameter will be used until kafka lag become less then 10 seconds (i.e. during startup and initial catch-up). After startup, GOGC will be set up to `normal-gc-percent` value. You can also [HTTP API](https://github.com/grafana/metrictank/blob/master/docs/http-api.md) for [GC control](https://github.com/grafana/metrictank/blob/master/docs/http-api.md#gc-control).
+You can use `gogc-startup` and `gogc-ready` parameters in `[kafka-mdm-in]` section for GOGC control. Startup parameter will be used until kafka lag become less then 10 seconds (i.e. during startup and initial catch-up). After startup, GOGC will be set up to `gogc-ready` value. You can also [HTTP API](https://github.com/grafana/metrictank/blob/master/docs/http-api.md) for [GC control](https://github.com/grafana/metrictank/blob/master/docs/http-api.md#gc-control).
 
 
 ## data doesn't show up
