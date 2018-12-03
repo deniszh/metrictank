@@ -70,6 +70,7 @@ var partitionOffset map[int32]*stats.Gauge64
 var partitionLogSize map[int32]*stats.Gauge64
 var partitionLag map[int32]*stats.Gauge64
 var StartupGCPercent int
+var goGC int
 
 func ConfigSetup() {
 	inKafkaMdm := flag.NewFlagSet("kafka-mdm-in", flag.ExitOnError)
@@ -87,12 +88,13 @@ func ConfigSetup() {
 	inKafkaMdm.DurationVar(&consumerMaxProcessingTime, "consumer-max-processing-time", time.Second, "The maximum amount of time the consumer expects a message takes to process")
 	inKafkaMdm.IntVar(&netMaxOpenRequests, "net-max-open-requests", 100, "How many outstanding requests a connection is allowed to have before sending on it blocks")
 	if os.Getenv("GOGC") != "" {
-		goGC, err := strconv.Atoi(os.Getenv("GOGC"))
+		var err
+		goGC, err = strconv.Atoi(os.Getenv("GOGC"))
 		if err != nil {
-			goGC := 100
+			goGC = 100
 		}
 	} else {
-		goGC := 100
+		goGC = 100
 	}
 	inKafkaMdm.IntVar(&StartupGCPercent, "gogc-startup", goGC, "GOGC value during node startup (lag > maxPrio)")
 	inKafkaMdm.IntVar(&NormalGCPercent, "gogc-ready", goGC, "GOGC value during normal run (lag <= maxPrio)")
