@@ -70,7 +70,6 @@ var partitionOffset map[int32]*stats.Gauge64
 var partitionLogSize map[int32]*stats.Gauge64
 var partitionLag map[int32]*stats.Gauge64
 var StartupGCPercent int
-var goGC int
 
 func ConfigSetup() {
 	inKafkaMdm := flag.NewFlagSet("kafka-mdm-in", flag.ExitOnError)
