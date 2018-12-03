@@ -86,13 +86,13 @@ func ConfigSetup() {
 	inKafkaMdm.DurationVar(&consumerMaxWaitTime, "consumer-max-wait-time", time.Second, "The maximum amount of time the broker will wait for Consumer.Fetch.Min bytes to become available before it returns fewer than that anyway")
 	inKafkaMdm.DurationVar(&consumerMaxProcessingTime, "consumer-max-processing-time", time.Second, "The maximum amount of time the consumer expects a message takes to process")
 	inKafkaMdm.IntVar(&netMaxOpenRequests, "net-max-open-requests", 100, "How many outstanding requests a connection is allowed to have before sending on it blocks")
-	if os.Getenv("GOGC") == "" {
-		goGC = 100
-	} else {
+	if os.Getenv("GOGC") != "" {
 		goGC, err := strconv.Atoi(os.Getenv("GOGC"))
 		if err != nil {
-			goGC = 100
+			goGC := 100
 		}
+	} else {
+		goGC := 100
 	}
 	inKafkaMdm.IntVar(&StartupGCPercent, "gogc-startup", goGC, "GOGC value during node startup (lag > maxPrio)")
 	inKafkaMdm.IntVar(&NormalGCPercent, "gogc-ready", goGC, "GOGC value during normal run (lag <= maxPrio)")
