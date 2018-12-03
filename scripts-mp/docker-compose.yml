@@ -18,6 +18,7 @@ services:
      WAIT_HOSTS: cassandra:9042,kafka:9092
      WAIT_TIMEOUT: 60
      MT_KAFKA_MDM_IN_GOGC_STARTUP: 40
+     GOGC: 200
     links:
      - cassandra
 
