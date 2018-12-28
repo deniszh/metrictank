@@ -16,11 +16,15 @@ func (s *Server) getNormalGCPercent(ctx *middleware.Context) {
 }
 
 func (s *Server) setStartupGCPercent(ctx *middleware.Context, percent models.StartupGCPercent) {
+	GoGCmutex.lock()
+	defer GoGCmutex.Unlock()
 	kafkamdm.StartupGCPercent = percent.Value
 	ctx.PlainText(200, []byte("OK"))
 }
 
 func (s *Server) setNormalGCPercent(ctx *middleware.Context, percent models.NormalGCPercent) {
+	GoGCmutex.lock()
+	defer GoGCmutex.Unlock()
 	kafkamdm.NormalGCPercent = percent.Value
 	ctx.PlainText(200, []byte("OK"))
 }

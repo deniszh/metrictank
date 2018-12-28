@@ -69,6 +69,7 @@ var partitionLogSize map[int32]*stats.Gauge64
 var partitionLag map[int32]*stats.Gauge64
 var StartupGCPercent int
 var goGC int
+var GoGCmutex sync.Mutex
 
 func ConfigSetup() {
 	inKafkaMdm := flag.NewFlagSet("kafka-mdm-in", flag.ExitOnError)
